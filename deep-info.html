@@ -5,23 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bradley's Navigator - Background & Rationale</title>
     <style>
+        :root {
+            --bg: #0b1220;
+            --bg-2: #101827;
+            --panel: #1a2332;
+            --panel-2: #131c29;
+            --border: rgba(148, 163, 184, 0.18);
+            --border-strong: rgba(148, 163, 184, 0.28);
+
+            --text: #f8fafc;
+            --text-soft: #dbe4ee;
+            --text-muted: #b6c2cf;
+
+            --accent: #8db4c7;
+            --accent-soft: rgba(141, 180, 199, 0.14);
+            --accent-border: rgba(141, 180, 199, 0.34);
+
+            --green: #a7c7af;
+            --button: #2f6f78;
+            --button-hover: #3a818b;
+            --button-ghost: #162231;
+            --shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+            --radius: 14px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(to br, #0f172a via #1e293b to #0f172a);
-            color: #e2e8f0;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #0f1724 50%, var(--bg-2) 100%);
+            color: var(--text);
+            line-height: 1.68;
+            font-size: 17px;
         }
 
         header {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(11, 18, 32, 0.96);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+            border-bottom: 1px solid var(--border);
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -35,73 +64,79 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--text);
         }
 
         header p {
-            color: #2dd4bf;
-            font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            color: var(--accent);
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-top: 0.2rem;
         }
 
         header a {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: #0d9488;
+            padding: 0.72rem 1.1rem;
+            background: var(--button);
             color: #fff;
             text-decoration: none;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            transition: background 0.2s;
+            border-radius: 0.65rem;
+            font-size: 0.96rem;
+            transition: background 0.2s ease;
+            box-shadow: var(--shadow);
         }
 
         header a:hover {
-            background: #14b8a6;
+            background: var(--button-hover);
         }
 
         main {
             max-width: 56rem;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 1.9rem 1rem;
+            padding-bottom: 3rem;
         }
 
         .intro {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.4rem;
         }
 
         .intro h2 {
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--text);
             margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .intro p {
-            color: #cbd5e1;
-            font-size: 1.125rem;
+            color: var(--text-soft);
+            font-size: 1.08rem;
         }
 
         .section {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(45, 212, 191, 0.3);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 0.85rem;
+            padding: 1.6rem;
+            margin-bottom: 1.4rem;
+            box-shadow: var(--shadow);
         }
 
         .section h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            color: #2dd4bf;
+            color: var(--text);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -112,56 +147,59 @@
             content: '';
             width: 4px;
             height: 24px;
-            background: #2dd4bf;
-            border-radius: 2px;
+            background: var(--accent);
+            border-radius: 999px;
+            flex-shrink: 0;
         }
 
         .section ul {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .section li {
-            padding: 0.75rem 0;
+            padding: 0.62rem 0;
             padding-left: 1.5rem;
             position: relative;
-            color: #cbd5e1;
+            color: var(--text-soft);
+            font-size: 1.02rem;
         }
 
         .section li::before {
             content: '→';
             position: absolute;
             left: 0;
-            color: #2dd4bf;
-            font-weight: bold;
+            color: var(--accent);
+            font-weight: 700;
         }
 
         .section p {
-            color: #cbd5e1;
+            color: var(--text-soft);
             margin-bottom: 1rem;
+            font-size: 1.02rem;
         }
 
         .section strong {
-            color: #2dd4bf;
+            color: var(--accent);
         }
 
         .highlight {
-            background: rgba(45, 212, 191, 0.1);
-            border-left: 3px solid #2dd4bf;
+            background: var(--accent-soft);
+            border-left: 3px solid var(--accent);
             padding: 1rem;
             margin: 1rem 0;
-            border-radius: 0.375rem;
+            border-radius: 0.55rem;
         }
 
         .highlight em {
-            color: #2dd4bf;
+            color: var(--accent);
             font-style: italic;
         }
 
         .cycle {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            border-radius: 0.5rem;
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: 0.7rem;
             padding: 1rem;
             margin: 1rem 0;
         }
@@ -178,19 +216,21 @@
 
         .cycle-label {
             font-weight: 800;
-            color: #2dd4bf;
-            min-width: 100px;
+            color: var(--accent);
+            min-width: 110px;
+            font-size: 1rem;
         }
 
         .cycle-desc {
-            color: #cbd5e1;
+            color: var(--text-soft);
+            font-size: 1rem;
         }
 
         footer {
-            background: rgba(15, 23, 42, 0.95);
-            border-top: 1px solid rgba(45, 212, 191, 0.2);
+            background: rgba(11, 18, 32, 0.97);
+            border-top: 1px solid var(--border);
             padding: 2rem 1rem;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             text-align: center;
         }
 
@@ -203,21 +243,24 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: #0d9488;
+            padding: 0.82rem 1.4rem;
+            background: var(--button);
             color: #fff;
             text-decoration: none;
-            border-radius: 0.5rem;
-            transition: background 0.2s;
+            border-radius: 0.65rem;
+            transition: background 0.2s ease;
+            box-shadow: var(--shadow);
+            font-size: 0.98rem;
         }
 
         footer a:hover {
-            background: #14b8a6;
+            background: var(--button-hover);
         }
 
         footer p {
-            margin-bottom: 1.5rem;
-            color: #94a3b8;
+            margin-bottom: 1.4rem;
+            color: var(--text-muted);
+            font-size: 0.98rem;
         }
 
         .container {
@@ -226,26 +269,40 @@
         }
 
         @media (max-width: 640px) {
+            body {
+                font-size: 17.5px;
+            }
+
             .intro h2 {
-                font-size: 1.875rem;
+                font-size: 1.72rem;
             }
 
             .section {
-                padding: 1.5rem;
+                padding: 1.35rem;
             }
 
             .section h3 {
-                font-size: 1.25rem;
+                font-size: 1.18rem;
             }
 
             header .container {
                 flex-direction: column;
                 gap: 1rem;
+                align-items: stretch;
             }
 
             header a {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .cycle-item {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            .cycle-label {
+                min-width: 0;
             }
         }
     </style>
@@ -267,27 +324,25 @@
             <p>Deep background and communication approach</p>
         </div>
 
-        <!-- About Bradley -->
         <div class="section">
             <h3>Who is Bradley?</h3>
-            <p>Bradley is a 66-year-old man who values dignity, respect, and being the "boss" of his own life. He takes pride in his history as a business owner, carpenter, surfer, and abalone diver. He has impressive upper-body strength and is a talented storyteller who loves having a laugh with people who treat him as an equal.</p>
+            <p>Bradley is a 66-year-old man who values dignity, respect, and being the “boss” of his own life. He takes pride in his history as a business owner, carpenter, surfer, and abalone diver. He has impressive upper-body strength and is a talented storyteller who loves having a laugh with people who treat him as an equal.</p>
             <ul>
-                <li>Loves nature, especially Currumbin Valley</li>
-                <li>Enjoys visiting cafes and engaging in banter with familiar staff</li>
-                <li>Responds well to humour, warmth, and being treated as an equal</li>
-                <li>Values honesty and direct communication</li>
-                <li>Dislikes waiting, too much noise, or too many instructions</li>
+                <li>Loves nature, especially Currumbin Valley.</li>
+                <li>Enjoys visiting cafes and engaging in banter with familiar staff.</li>
+                <li>Responds well to humour, warmth, and being treated as an equal.</li>
+                <li>Values honesty and direct communication.</li>
+                <li>Dislikes waiting, too much noise, or too many instructions.</li>
             </ul>
         </div>
 
-        <!-- Brain Injury Impact -->
         <div class="section">
             <h3>How His Brain Injury Affects Him</h3>
             <p>Bradley has a brain injury that affects his memory and how he processes information. Understanding these impacts is crucial for staff interactions.</p>
             <ul>
-                <li><strong>Body vs. Brain:</strong> His brain tells him he can walk or transfer easily ("I can do it"), but his legs aren't steady enough. This creates genuine confusion, not stubbornness.</li>
-                <li><strong>Memory Loss:</strong> He might forget that he needs help with balance, or that a plan (like a taxi) was discussed earlier.</li>
-                <li><strong>Confabulation:</strong> He may fill memory gaps with other memories he believes to be true (e.g., believing he paid a cleaner $340).</li>
+                <li><strong>Body vs. Brain:</strong> His brain tells him he can walk or transfer easily (“I can do it”), but his legs are not steady enough. This creates genuine confusion, not stubbornness.</li>
+                <li><strong>Memory Loss:</strong> He might forget that he needs help with balance, or that a plan such as a taxi was discussed earlier.</li>
+                <li><strong>Confabulation:</strong> He may fill memory gaps with other memories he believes to be true.</li>
                 <li><strong>Overload:</strong> Too much noise, too many instructions, or too much waiting can overwhelm him and trigger escalation.</li>
             </ul>
             <div class="highlight">
@@ -295,149 +350,139 @@
             </div>
         </div>
 
-        <!-- Why Behaviour Escalates -->
         <div class="section">
             <h3>Why Behaviour May Escalate</h3>
-            <p>Bradley's escalation stems from grief, loss of identity, and lack of insight into his physical deficits.</p>
+            <p>Bradley’s escalation stems from grief, loss of identity, and lack of insight into his physical deficits.</p>
             <ul>
-                <li><strong>Grief and Loss:</strong> He has lost his pre-injury identity as an independent business owner and physical labourer. This creates deep frustration.</li>
+                <li><strong>Grief and Loss:</strong> He has lost his pre-injury identity as an independent business owner and physical labourer. This creates frustration.</li>
                 <li><strong>Lack of Insight:</strong> He genuinely cannot perceive his physical deficits in the moment. He believes he is still capable.</li>
-                <li><strong>Loss of Control:</strong> The walking belt feels like "someone grabbing the steering wheel while I'm driving." It triggers a sense of powerlessness.</li>
+                <li><strong>Loss of Control:</strong> The walking belt feels like “someone grabbing the steering wheel while I’m driving.”</li>
                 <li><strong>Fatigue and Sundowning:</strong> Afternoon fatigue leads to increased confusion and verbal aggression.</li>
-                <li><strong>Unfamiliar Staff:</strong> He masks vulnerability with new people by acting overly independent, leading to impulsive behaviour.</li>
+                <li><strong>Unfamiliar Staff:</strong> He may mask vulnerability with new people by acting overly independent, which can increase impulsive behaviour.</li>
             </ul>
             <div class="highlight">
-                <em>Critical trigger:</em> Challenging his beliefs or using logic/evidence when he is dysregulated will escalate him further.
+                <em>Critical trigger:</em> Challenging his beliefs or using logic and evidence when he is dysregulated will escalate him further.
             </div>
         </div>
 
-        <!-- Communication Approach -->
         <div class="section">
             <h3>Communication Approach</h3>
-            <p>Bradley responds best to a specific communication style that respects his identity and reduces cognitive load.</p>
+            <p>Bradley responds best to a communication style that respects his identity and reduces cognitive load.</p>
             <ul>
-                <li><strong>Treat him like an equal:</strong> Don't "boss him around." Use the "Employer" stance—frame rules as business protocols, not personal demands.</li>
+                <li><strong>Treat him like an equal:</strong> Do not boss him around.</li>
                 <li><strong>Use humour and banter:</strong> He engages well with people who joke with him and treat him with warmth.</li>
-                <li><strong>Be direct but kind:</strong> Tell him straight, but with respect. Avoid long explanations or justifications.</li>
-                <li><strong>Validate emotion without correcting confabulation:</strong> If he believes something false, don't argue. Instead, redirect or distract.</li>
-                <li><strong>Use neutral phrasing:</strong> Say "courtesy bus" instead of "disability van." Say "courtesy transport" instead of "maxi-taxi."</li>
-                <li><strong>Avoid verbal logic when dysregulated:</strong> He cannot process complex explanations when upset. Keep scripts short and forward-moving.</li>
+                <li><strong>Be direct but kind:</strong> Tell him straight, but with respect.</li>
+                <li><strong>Validate emotion without correcting confabulation:</strong> If he believes something false, do not argue. Redirect instead.</li>
+                <li><strong>Use neutral phrasing:</strong> “Courtesy bus” or “courtesy transport” may feel less confronting.</li>
+                <li><strong>Avoid verbal logic when dysregulated:</strong> Keep scripts short and forward-moving.</li>
             </ul>
         </div>
 
-        <!-- Why Scripts Are Brief -->
         <div class="section">
             <h3>Why Scripts Are Brief</h3>
-            <p>The scripts in the Safety Navigator are intentionally short. This is not because staff lack information—it's because Bradley cannot process long explanations when dysregulated.</p>
+            <p>The scripts in the Safety Navigator are intentionally short. This is because Bradley cannot process long explanations when dysregulated.</p>
             <ul>
-                <li>Arguing or over-explaining increases escalation</li>
-                <li>Bradley cannot process verbal logic when his brain is in crisis mode</li>
-                <li>Short, forward-moving prompts redirect his attention and reduce cognitive load</li>
-                <li>Visual cues (showing the Sara Stedy, opening the car door) are more effective than words</li>
-                <li>Staff need to stay calm and brief to model regulation</li>
+                <li>Arguing or over-explaining increases escalation.</li>
+                <li>Bradley cannot process verbal logic when his brain is in crisis mode.</li>
+                <li>Short, forward-moving prompts redirect attention and reduce cognitive load.</li>
+                <li>Visual cues are often more effective than words.</li>
+                <li>Staff need to stay calm and brief to model regulation.</li>
             </ul>
             <div class="highlight">
                 <em>Remember:</em> The goal is not to convince Bradley. The goal is to keep him safe and move forward.
             </div>
         </div>
 
-        <!-- Proactive Strategies -->
         <div class="section">
             <h3>Proactive Strategies</h3>
-            <p>These strategies prevent escalation before it starts. They should be implemented before any behaviour occurs.</p>
+            <p>These strategies prevent escalation before it starts.</p>
             <ul>
-                <li><strong>Zero Wait Rule:</strong> Have the vehicle ready, doors open, equipment positioned, and shoes/wallet ready before inviting Bradley to move. Waiting creates a vacuum for impulsivity.</li>
-                <li><strong>Visual Cues Over Verbal Argument:</strong> If Bradley insists he is steady but is not, don't argue. Bring the Sara Stedy and let the equipment speak for itself.</li>
-                <li><strong>Experiential Feedback:</strong> Instead of telling him "You are wobbling," let him feel his balance limits safely on the Sara Stedy, then say "See that wobble? That's why we need the support today."</li>
-                <li><strong>Respectful Reframing:</strong> Stop using words like "Disability Van" or "Maxi-Taxi." Use "courtesy bus" to support his dignity.</li>
-                <li><strong>Waiting Tolerance Support:</strong> If Bradley must wait for a WAV, hand him a phone playing a video (e.g., boat racing) so his attention is on the screen, not the wait.</li>
+                <li><strong>Zero Wait Rule:</strong> Have the vehicle ready, doors open, equipment positioned, and shoes or wallet ready before inviting Bradley to move.</li>
+                <li><strong>Visual Cues Over Verbal Argument:</strong> If Bradley insists he is steady but is not, do not argue. Bring the Sara Stedy and let the equipment speak for itself.</li>
+                <li><strong>Experiential Feedback:</strong> Let him feel balance limits safely, then name what happened.</li>
+                <li><strong>Respectful Reframing:</strong> Use language that supports dignity rather than disability-coded language.</li>
+                <li><strong>Waiting Tolerance Support:</strong> Use distraction such as a preferred video if waiting cannot be avoided.</li>
             </ul>
         </div>
 
-        <!-- Escalation Cycle -->
         <div class="section">
-            <h3>Bradley's Escalation Cycle</h3>
-            <p>Understanding the stages helps staff recognize where Bradley is and respond appropriately.</p>
+            <h3>Bradley’s Escalation Cycle</h3>
+            <p>Understanding the stages helps staff recognise where Bradley is and respond appropriately.</p>
             <div class="cycle">
                 <div class="cycle-item">
                     <div class="cycle-label">1. Baseline</div>
-                    <div class="cycle-desc">Calm, storytelling, joking, engaging with staff as an equal. Staff response: Engage in stories, validate his role as "the boss," keep mood light.</div>
+                    <div class="cycle-desc">Calm, storytelling, joking, engaging with staff as an equal. Staff response: engage in stories, validate his role, keep mood light.</div>
                 </div>
                 <div class="cycle-item">
                     <div class="cycle-label">2. Early Warning</div>
-                    <div class="cycle-desc">Mumbling, removing footrests, repetitive questions about roster or missing staff. Staff response: Distract and redirect, change subject, check physical needs.</div>
+                    <div class="cycle-desc">Mumbling, removing footrests, repetitive questions about roster or missing staff. Staff response: distract, redirect, change subject, check physical needs.</div>
                 </div>
                 <div class="cycle-item">
                     <div class="cycle-label">3. Escalation</div>
-                    <div class="cycle-desc">Swearing, accusing staff of laziness, refusing the walking belt, asserting control. Staff response: Use direct scripts, reduce verbal clutter, give space, stop arguing logic.</div>
+                    <div class="cycle-desc">Swearing, accusing staff, refusing the walking belt, asserting control. Staff response: use direct scripts, reduce verbal clutter, give space, stop arguing logic.</div>
                 </div>
                 <div class="cycle-item">
                     <div class="cycle-label">4. Crisis</div>
-                    <div class="cycle-desc">Attempting to stand without support, pushing wheelchair near traffic, high-volume shouting, incoherent outbursts. Staff response: Stop the transfer, focus on safety, use Step 7 decision tool.</div>
+                    <div class="cycle-desc">Attempting to stand without support, pushing wheelchair near traffic, high-volume shouting, incoherent outbursts. Staff response: stop the transfer, focus on safety, use Step 7.</div>
                 </div>
                 <div class="cycle-item">
                     <div class="cycle-label">5. Recovery</div>
-                    <div class="cycle-desc">Fatigue, falling asleep, apology, memory loss regarding the incident. Staff response: Do not debrief, move to preferred activity, act as if everything is normal.</div>
+                    <div class="cycle-desc">Fatigue, falling asleep, apology, memory loss regarding the incident. Staff response: do not debrief, move to preferred activity, act as if everything is normal.</div>
                 </div>
             </div>
         </div>
 
-        <!-- Duty of Care vs Restrictive Practice -->
         <div class="section">
             <h3>Duty of Care vs. Restrictive Practice</h3>
-            <p>This distinction is central to the Safety Navigator. Understanding it protects Bradley and guides staff decisions.</p>
+            <p>This distinction is central to the Safety Navigator.</p>
             <ul>
-                <li><strong>Duty of Care (Pathway A):</strong> Stopping a transfer because Bradley fails the OT screening due to physical inability (fatigue, poor balance, disorientation). Bradley agrees to wait or change the plan. This is NOT a restrictive practice—it's a negotiated safety decision based on skills deficit.</li>
-                <li><strong>Restrictive Practice (Pathway B):</strong> Stopping a transfer because Bradley refuses to follow safety instructions and attempts to proceed anyway. Staff prevent his exit (blocking door, locking gate) to maintain safety. This IS a restrictive practice and must be reported as an incident.</li>
+                <li><strong>Duty of Care (Pathway A):</strong> Stopping a transfer because Bradley fails screening due to physical inability and agrees to wait or change the plan.</li>
+                <li><strong>Restrictive Practice (Pathway B):</strong> Stopping a transfer because Bradley refuses safety instructions and staff must prevent exit to maintain safety.</li>
             </ul>
             <div class="highlight">
-                <em>The key difference:</em> Does Bradley agree to the pause? If yes, it's duty of care. If he refuses and staff must physically prevent him from leaving, it's a restrictive practice.
+                <em>The key difference:</em> If Bradley agrees to the pause, it is duty of care. If he refuses and staff must physically prevent him from leaving, it is a restrictive practice.
             </div>
         </div>
 
-        <!-- Reporting -->
         <div class="section">
             <h3>Reporting Requirements</h3>
-            <p>Accurate reporting protects Bradley and ensures compliance with NDIS requirements.</p>
+            <p>Accurate reporting protects Bradley and supports compliance.</p>
             <ul>
-                <li><strong>Pathway A (Duty of Care):</strong> Record in shift notes as "Step 7 – Health/Safety Pause." No incident report required.</li>
-                <li><strong>Pathway B (Restrictive Practice):</strong> Report as a reportable incident with wording "Unauthorised Restrictive Practice." This must be lodged with the NDIS Commission.</li>
+                <li><strong>Pathway A:</strong> Record in shift notes as “Step 7 – Health/Safety Pause”.</li>
+                <li><strong>Pathway B:</strong> Report as an incident using “Unauthorised Restrictive Practice”.</li>
             </ul>
             <div class="highlight">
-                <em>Remember:</em> Accurate reporting is not punishment—it's accountability and protection for Bradley.
+                <em>Remember:</em> Accurate reporting is accountability and protection.
             </div>
         </div>
 
-        <!-- Recovery & Dignity -->
         <div class="section">
             <h3>Recovery & Dignity</h3>
-            <p>After an incident, the way staff respond shapes Bradley's recovery and future trust.</p>
+            <p>After an incident, staff response shapes Bradley’s recovery and future trust.</p>
             <ul>
-                <li><strong>Do NOT debrief:</strong> Avoid discussing the incident with Bradley. He may have no recollection, and talking about it can re-traumatise him.</li>
-                <li><strong>Move immediately to a preferred activity:</strong> Go straight to coffee, TV, or another low-demand activity he enjoys.</li>
-                <li><strong>Act as if everything is normal:</strong> Behave naturally to preserve his dignity. Do not treat him differently or apologise repeatedly.</li>
-                <li><strong>Respect his identity:</strong> Bradley values being the "boss" of his own life. Recovery is an opportunity to reinforce that respect.</li>
+                <li><strong>Do NOT debrief:</strong> Avoid discussing the incident with Bradley.</li>
+                <li><strong>Move immediately to a preferred activity:</strong> Go straight to coffee, TV, or another low-demand activity.</li>
+                <li><strong>Act as if everything is normal:</strong> Behave naturally to preserve dignity.</li>
+                <li><strong>Respect his identity:</strong> Recovery is an opportunity to reinforce that respect.</li>
             </ul>
         </div>
 
-        <!-- Key Takeaways -->
         <div class="section">
             <h3>Key Takeaways</h3>
             <ul>
-                <li>Bradley's behaviour is driven by grief, loss of identity, and neurological changes—not stubbornness or malice.</li>
+                <li>Bradley’s behaviour is driven by grief, loss of identity, and neurological changes.</li>
                 <li>He cannot process verbal logic when dysregulated. Keep scripts short and forward-moving.</li>
-                <li>Proactive strategies (zero wait, visual cues, experiential feedback) prevent escalation before it starts.</li>
+                <li>Proactive strategies such as zero wait, visual cues, and experiential feedback reduce escalation.</li>
                 <li>The Step 7 decision tool helps staff distinguish between duty of care and restrictive practice.</li>
-                <li>Accurate reporting protects Bradley and ensures compliance.</li>
-                <li>Recovery is about preserving dignity and moving forward, not debriefing or blame.</li>
-                <li>Treat Bradley like an equal. Use humour, banter, and respect. He responds to warmth and direct communication.</li>
+                <li>Recovery is about preserving dignity and moving forward, not blame.</li>
+                <li>Treat Bradley like an equal. Use humour, banter, and respect.</li>
             </ul>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>This information supports the Safety Navigator app. Use it to deepen your understanding of Bradley's needs and communication approach.</p>
+            <p>This information supports the Safety Navigator app. Use it to deepen your understanding of Bradley’s needs and communication approach.</p>
             <a href="index.html">← Back to Safety Tool</a>
         </div>
     </footer>
