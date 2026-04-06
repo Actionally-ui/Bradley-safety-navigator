@@ -1,811 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Bradley's Safety Navigator</title>
-  <style>
-    :root {
-      --bg: #0b1222;
-      --panel: #111827;
-      --panel-2: #1f2937;
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --accent: #38bdf8;
-      --success: #22c55e;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 10px 26px rgba(0,0,0,0.24);
-      --radius: 18px;
-      --maxw: 720px;
-      --top-offset: 82px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Navigator</title>
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #0b1222 0%, #101826 100%);
-      color: var(--text);
-      line-height: 1.45;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
 
-    a { color: inherit; text-decoration: none; }
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 16px;
+}
 
-    .sticky-top {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(11,18,34,0.9);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+.section {
+  background: #1e293b;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 12px;
+}
 
-    .top-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
+h2 {
+  margin-top: 0;
+}
 
-    .brand h1 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.1;
-    }
+button, .btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #38bdf8;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
 
-    .brand p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
+.secondary {
+  background: #334155;
+  color: white;
+}
 
-    .menu-btn {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+.script {
+  background: #0ea5e9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
 
-    .app {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 16px 16px 110px;
-    }
-
-    .hero {
-      margin-bottom: 14px;
-      padding: 16px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(56,189,248,0.14), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-    }
-
-    .hero h2 {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .home-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .home-tile {
-      min-height: 110px;
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .home-tile small {
-      color: var(--muted);
-      font-size: 0.76rem;
-    }
-
-    .home-tile strong {
-      display: block;
-      font-size: 1rem;
-    }
-
-    .home-tile span {
-      color: var(--accent);
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-
-    .section {
-      scroll-margin-top: var(--top-offset);
-      margin: 16px 0;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .section-header {
-      padding: 15px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .section-header h3 {
-      margin: 0;
-      font-size: 1.06rem;
-    }
-
-    .section-header p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .section-body {
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .card {
-      background: rgba(17,24,39,0.92);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .card h4 {
-      margin: 0 0 10px;
-      font-size: 0.97rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    ul, ol {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    li + li { margin-top: 8px; }
-
-    .script-box {
-      border-left: 4px solid var(--accent);
-      background: rgba(56,189,248,0.10);
-      border-radius: 12px;
-      padding: 12px 13px;
-      font-weight: 700;
-      margin-top: 10px;
-    }
-
-    .success-box {
-      border-left-color: var(--success);
-      background: rgba(34,197,94,0.12);
-    }
-
-    .danger-box {
-      border-left-color: var(--danger);
-      background: rgba(239,68,68,0.12);
-    }
-
-    .warning-box {
-      border-left-color: var(--warning);
-      background: rgba(245,158,11,0.12);
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .btn.primary {
-      background: rgba(56,189,248,0.16);
-      color: var(--text);
-    }
-
-    .decision-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .decision-card {
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .decision-card h4 {
-      margin: 0 0 8px;
-      font-size: 0.98rem;
-    }
-
-    .decision-card small {
-      display: block;
-      color: var(--muted);
-      margin-top: 8px;
-      font-weight: 600;
-    }
-
-    .mini-steps {
-      display: grid;
-      gap: 10px;
-    }
-
-    .step {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .step strong {
-      display: block;
-      font-size: 0.86rem;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .utility-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 110;
-      background: rgba(11,18,34,0.93);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
-    }
-
-    .bottom-nav-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-    }
-
-    .bottom-link {
-      text-align: center;
-      font-size: 0.72rem;
-      color: var(--muted);
-      padding: 8px 4px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
-
-    .bottom-link:hover,
-    .bottom-link:focus {
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(255,255,255,0.05);
-      outline: none;
-    }
-
-    dialog {
-      width: min(92vw, 420px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: #0f172a;
-      color: var(--text);
-      padding: 0;
-      box-shadow: var(--shadow);
-    }
-
-    dialog::backdrop { background: rgba(0,0,0,0.55); }
-
-    .dialog-head, .dialog-body { padding: 16px; }
-
-    .dialog-head {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .dialog-head h4 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .close-btn {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      padding: 8px 10px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .menu-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .menu-link {
-      display: block;
-      padding: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .menu-link small {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    details.more-info {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      padding: 12px;
-    }
-
-    details.more-info summary {
-      cursor: pointer;
-      font-weight: 700;
-      list-style: none;
-    }
-
-    details.more-info summary::-webkit-details-marker { display: none; }
-
-    .more-body {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    @media (min-width: 720px) {
-      .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .decision-grid { grid-template-columns: 1fr 1fr; }
-      .mini-steps.two-col { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <header class="sticky-top" id="top">
-    <div class="top-inner">
-      <div class="brand">
-        <h1>Bradley's Safety Navigator</h1>
-        <p>Fast mobile guide</p>
-      </div>
-      <button class="menu-btn" id="openMenu" aria-haspopup="dialog" aria-controls="navMenu">Menu</button>
-    </div>
-  </header>
 
-  <main class="app">
-    <section class="hero">
-      <h2>Use in the moment</h2>
-      <p>Tap a section to jump straight there, or scroll. This version keeps the main flow simple and hides the extra detail behind one “More info” option.</p>
-    </section>
+<div class="container">
 
-    <section class="home-grid" aria-label="Quick navigation">
-      <a class="home-tile" href="#prepare"><div><small>Start here</small><strong>Prepare</strong></div><span>Open</span></a>
-      <a class="home-tile" href="#decision"><div><small>In the moment</small><strong>Live Decision</strong></div><span>Open</span></a>
-      <a class="home-tile" href="#pause"><div><small>Manual only</small><strong>Safety Pause</strong></div><span>Open</span></a>
-      <a class="home-tile" href="#reporting"><div><small>After event</small><strong>Reporting</strong></div><span>Open</span></a>
-      <a class="home-tile" href="#scripts"><div><small>Quick phrases</small><strong>Scripts</strong></div><span>Open</span></a>
-      <a class="home-tile" href="#more-info"><div><small>Optional</small><strong>More Info</strong></div><span>Open</span></a>
-    </section>
+<!-- HOME -->
+<div class="section">
+  <h2>Safety Navigator</h2>
+  <a class="btn" href="#prepare">Start</a>
+</div>
 
-    <section class="section" id="prepare">
-      <div class="section-header">
-        <h3>Prepare</h3>
-        <p>Set up first. Reduce waiting.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <h4>Check the transfer type</h4>
-          <div class="utility-row">
-            <span class="tag">WAV transfer</span>
-            <span class="tag">Manual transfer</span>
-          </div>
-        </article>
+<!-- PREPARE -->
+<div class="section" id="prepare">
+  <h2>Prepare</h2>
+  <ul>
+    <li>Have vehicle ready</li>
+    <li>Reduce waiting</li>
+    <li>Watch early signs</li>
+  </ul>
+  <a class="btn" href="#decision">Next</a>
+</div>
 
-        <article class="card">
-          <h4>Watch for early signs</h4>
-          <ul>
-            <li>Mumbling or slurred speech.</li>
-            <li>Removing footrests early.</li>
-            <li>Repetitive roster questions.</li>
-          </ul>
-        </article>
+<!-- DECISION -->
+<div class="section" id="decision">
+  <h2>Live Decision</h2>
 
-        <article class="card">
-          <h4>Do this</h4>
-          <ul>
-            <li>Have the vehicle and equipment ready before he moves.</li>
-            <li>Distract and redirect early.</li>
-            <li>Keep language short and concrete.</li>
-          </ul>
-          <div class="btn-row">
-            <a class="btn primary" href="#decision">Continue to Live Decision</a>
-            <a class="btn" href="#top">Back to top</a>
-          </div>
-        </article>
-      </div>
-    </section>
+  <div class="script">
+    Bradley, we’ve got to head off now. Your appointment’s at [time]. Let’s go.
+  </div>
 
-    <section class="section" id="decision">
-      <div class="section-header">
-        <h3>Live Decision</h3>
-        <p>Use brief language. Keep moving forward.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <h4>Say this</h4>
-          <div class="script-box">“Bradley, we’ve got to head off now. Your appointment’s at [time]. Let’s get going.”</div>
-          <div class="script-box">“The car’s here to take us. We’ll be quick and then we can [preferred activity].”</div>
-        </article>
+  <ul>
+    <li>No arguing</li>
+    <li>No explaining rules</li>
+    <li>Redirect to activity</li>
+  </ul>
 
-        <article class="card warning-box">
-          <h4>Do this</h4>
-          <ul>
-            <li>Avoid explaining rules, systems, or insurance.</li>
-            <li>Do not argue or justify.</li>
-            <li>Redirect to time, destination, or preferred activity.</li>
-          </ul>
-        </article>
+  <a class="btn" href="#pause">Safety Pause</a>
+</div>
 
-        <article class="card">
-          <h4>Need a safety pause?</h4>
-          <div class="btn-row">
-            <a class="btn primary" href="#pause">Go to Safety Pause</a>
-            <a class="btn" href="#scripts">Open Scripts</a>
-          </div>
-        </article>
-      </div>
-    </section>
+<!-- PAUSE -->
+<div class="section" id="pause">
+  <h2>Safety Pause</h2>
 
-    <section class="section" id="pause">
-      <div class="section-header">
-        <h3>Safety Pause</h3>
-        <p>Manual transfers only. Stop, focus on safety, then choose a pathway.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <h4>Step 7</h4>
-          <ol>
-            <li>Stop the transfer.</li>
-            <li>Focus on safety.</li>
-            <li>Choose the pathway below.</li>
-          </ol>
-        </article>
+  <ul>
+    <li>Stop</li>
+    <li>Check safety</li>
+    <li>Choose pathway</li>
+  </ul>
 
-        <div class="decision-grid">
-          <a class="decision-card" href="#pathway-a">
-            <h4>Pathway A: Skills</h4>
-            <p>Use this when the issue is fatigue, balance, confusion, or physical instability.</p>
-            <small>Tap to continue</small>
-          </a>
+  <a class="btn" href="#pathA">Pathway A</a>
+  <a class="btn secondary" href="#pathB">Pathway B</a>
+</div>
 
-          <a class="decision-card" href="#pathway-b">
-            <h4>Pathway B: Behaviour</h4>
-            <p>Use this when Bradley refuses to wait and attempts to proceed anyway.</p>
-            <small>Tap to continue</small>
-          </a>
-        </div>
+<!-- PATHWAY A -->
+<div class="section" id="pathA">
+  <h2>Pathway A</h2>
 
-        <article class="card">
-          <div class="btn-row">
-            <a class="btn" href="#decision">Back to Live Decision</a>
-            <a class="btn" href="#top">Back to top</a>
-          </div>
-        </article>
-      </div>
-    </section>
+  <strong>Say:</strong>
+  <div class="script">
+    Bradley, it’s not safe right now.
+  </div>
 
-    <section class="section" id="pathway-a">
-      <div class="section-header">
-        <h3>Pathway A</h3>
-        <p>Skills deficit / duty of care.</p>
-      </div>
-      <div class="section-body">
-        <div class="mini-steps two-col">
-          <article class="step">
-            <strong>Say this</strong>
-            <p>“Bradley, your legs are too shaky today. It isn’t safe to transfer right now.”</p>
-          </article>
-          <article class="step">
-            <strong>Do this</strong>
-            <p>Pause the outing and move to an in-home or lower-demand option if he agrees.</p>
-          </article>
-          <article class="step">
-            <strong>Record this</strong>
-            <p>Shift notes: “Step 7 – Health/Safety Pause”.</p>
-          </article>
-          <article class="step">
-            <strong>Then</strong>
-            <p>Move to recovery and dignity. Do not debrief the incident.</p>
-          </article>
-        </div>
+  <strong>Do:</strong>
+  <p>Pause outing</p>
 
-        <article class="card success-box">
-          <h4>Result</h4>
-          <p>Not a restrictive practice.</p>
-        </article>
+  <strong>Record:</strong>
+  <p>Health/Safety Pause</p>
 
-        <article class="card">
-          <div class="btn-row">
-            <a class="btn primary" href="#reporting">Continue to Reporting</a>
-            <a class="btn" href="#pause">Back to Safety Pause</a>
-          </div>
-        </article>
-      </div>
-    </section>
+  <a class="btn" href="#report">Next</a>
+</div>
 
-    <section class="section" id="pathway-b">
-      <div class="section-header">
-        <h3>Pathway B</h3>
-        <p>Behaviour / restrictive practice.</p>
-      </div>
-      <div class="section-body">
-        <div class="mini-steps two-col">
-          <article class="step">
-            <strong>Say this</strong>
-            <p>State the risk briefly and do not argue further.</p>
-          </article>
-          <article class="step">
-            <strong>Do this</strong>
-            <p>Prevent exit to maintain safety if he refuses to wait and attempts to proceed anyway.</p>
-          </article>
-          <article class="step">
-            <strong>Report this</strong>
-            <p>Incident report: “Unauthorised Restrictive Practice”.</p>
-          </article>
-          <article class="step">
-            <strong>Then</strong>
-            <p>Move to recovery and dignity when safe.</p>
-          </article>
-        </div>
+<!-- PATHWAY B -->
+<div class="section" id="pathB">
+  <h2>Pathway B</h2>
 
-        <article class="card danger-box">
-          <h4>Result</h4>
-          <p>Environmental restraint. Reportable incident.</p>
-        </article>
+  <strong>Say:</strong>
+  <div class="script">
+    It’s not safe. We need to stop.
+  </div>
 
-        <article class="card">
-          <div class="btn-row">
-            <a class="btn primary" href="#reporting">Continue to Reporting</a>
-            <a class="btn" href="#pause">Back to Safety Pause</a>
-          </div>
-        </article>
-      </div>
-    </section>
+  <strong>Do:</strong>
+  <p>Prevent unsafe movement</p>
 
-    <section class="section" id="reporting">
-      <div class="section-header">
-        <h3>Reporting</h3>
-        <p>Record the pathway clearly, then move on.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <h4>Pathway A</h4>
-          <p>Shift notes: “Step 7 – Health/Safety Pause”.</p>
-        </article>
+  <strong>Report:</strong>
+  <p>Unauthorised Restrictive Practice</p>
 
-        <article class="card">
-          <h4>Pathway B</h4>
-          <p>Incident report: “Unauthorised Restrictive Practice”.</p>
-        </article>
+  <a class="btn" href="#report">Next</a>
+</div>
 
-        <article class="card">
-          <div class="btn-row">
-            <a class="btn primary" href="#recovery">Continue to Recovery</a>
-            <a class="btn" href="#top">Back to top</a>
-          </div>
-        </article>
-      </div>
-    </section>
+<!-- REPORT -->
+<div class="section" id="report">
+  <h2>Reporting</h2>
 
-    <section class="section" id="scripts">
-      <div class="section-header">
-        <h3>Scripts</h3>
-        <p>Short phrases for real-time use.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <h4>Escalation / refusal</h4>
-          <div class="script-box">“Bradley, we’ve got to head off now. Your appointment’s at [time]. Let’s get going.”</div>
-        </article>
+  <p>Record pathway used</p>
 
-        <article class="card">
-          <h4>Vehicle transition</h4>
-          <div class="script-box">“The courtesy bus is here to take us to the cafe. Let’s head out.”</div>
-        </article>
+  <a class="btn" href="#scripts">Next</a>
+</div>
 
-        <article class="card">
-          <h4>Mobility check</h4>
-          <div class="script-box">“Let’s just test the legs on the machine first.”</div>
-        </article>
+<!-- SCRIPTS -->
+<div class="section" id="scripts">
+  <h2>Scripts</h2>
 
-        <article class="card">
-          <h4>Distraction</h4>
-          <div class="script-box">“Did you see that boat on the news?”</div>
-        </article>
-      </div>
-    </section>
+  <div class="script">Let’s head out now</div>
+  <div class="script">The car is ready</div>
+  <div class="script">Let’s test your legs first</div>
 
-    <section class="section" id="recovery">
-      <div class="section-header">
-        <h3>Recovery</h3>
-        <p>Preserve dignity after the event.</p>
-      </div>
-      <div class="section-body">
-        <article class="card">
-          <ul>
-            <li>Do not debrief the incident with Bradley.</li>
-            <li>Move straight to a preferred, low-demand activity.</li>
-            <li>Act as if everything is normal.</li>
-          </ul>
-          <div class="script-box success-box">Bradley values being the boss of his own life. Respect his identity, even in recovery.</div>
-          <div class="btn-row">
-            <a class="btn" href="#top">Back to top</a>
-          </div>
-        </article>
-      </div>
-    </section>
+  <a class="btn" href="#recovery">Next</a>
+</div>
 
-    <section class="section" id="more-info">
-      <div class="section-header">
-        <h3>More Info</h3>
-        <p>Optional extra detail only.</p>
-      </div>
-      <div class="section-body">
-        <details class="more-info">
-          <summary>About Bradley</summary>
-          <div class="more-body">
-            Bradley values dignity, respect, humour, directness, and being treated like an equal. Waiting, overload, and loss of control can increase frustration.
-          </div>
-        </details>
+<!-- RECOVERY -->
+<div class="section" id="recovery">
+  <h2>Recovery</h2>
 
-        <details class="more-info">
-          <summary>Why behaviour may escalate</summary>
-          <div class="more-body">
-            Triggers can include the walking belt, delays, fatigue, unfamiliar staff, and challenges to his beliefs in the moment.
-          </div>
-        </details>
+  <ul>
+    <li>No debrief</li>
+    <li>Move to preferred activity</li>
+    <li>Return to normal</li>
+  </ul>
 
-        <details class="more-info">
-          <summary>Proactive strategies</summary>
-          <div class="more-body">
-            Keep a zero-wait approach, use visual cues over argument, and use humour, banter, and relational scaffolding.
-          </div>
-        </details>
+  <a class="btn" href="deep-info.html">Deeper Script Rationale</a>
+</div>
 
-        <details class="more-info">
-          <summary>Skill building</summary>
-          <div class="more-body">
-            Use in-the-moment experiential feedback rather than debate. Reframe transport respectfully and reduce waiting wherever possible.
-          </div>
-        </details>
-      </div>
-    </section>
-  </main>
+</div>
 
-  <nav class="bottom-nav" aria-label="Bottom navigation">
-    <div class="bottom-nav-inner">
-      <a class="bottom-link" href="#prepare">Prepare</a>
-      <a class="bottom-link" href="#decision">Decision</a>
-      <a class="bottom-link" href="#pause">Pause</a>
-      <a class="bottom-link" href="#reporting">Report</a>
-      <a class="bottom-link" href="#scripts">Scripts</a>
-    </div>
-  </nav>
-
-  <dialog id="navMenu" aria-labelledby="menuTitle">
-    <div class="dialog-head">
-      <h4 id="menuTitle">Jump to section</h4>
-      <button class="close-btn" id="closeMenu">Close</button>
-    </div>
-    <div class="dialog-body">
-      <div class="menu-list">
-        <a class="menu-link" href="#prepare">Prepare<small>Set up and reduce waiting.</small></a>
-        <a class="menu-link" href="#decision">Live Decision<small>Brief language and next action.</small></a>
-        <a class="menu-link" href="#pause">Safety Pause<small>Choose Pathway A or B.</small></a>
-        <a class="menu-link" href="#pathway-a">Pathway A<small>Say this, do this, record this.</small></a>
-        <a class="menu-link" href="#pathway-b">Pathway B<small>Say this, do this, report this.</small></a>
-        <a class="menu-link" href="#reporting">Reporting<small>Record and move on.</small></a>
-        <a class="menu-link" href="#scripts">Scripts<small>Short phrases for real-time use.</small></a>
-        <a class="menu-link" href="#recovery">Recovery<small>Preserve dignity.</small></a>
-        <a class="menu-link" href="#more-info">More Info<small>Optional extra detail.</small></a>
-      </div>
-    </div>
-  </dialog>
-
-  <script>
-    const dialog = document.getElementById('navMenu');
-    const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.getElementById('closeMenu');
-
-    openBtn.addEventListener('click', () => dialog.showModal());
-    closeBtn.addEventListener('click', () => dialog.close());
-
-    dialog.addEventListener('click', (e) => {
-      const rect = dialog.getBoundingClientRect();
-      const clickedInDialog = (
-        e.clientX >= rect.left &&
-        e.clientX <= rect.right &&
-        e.clientY >= rect.top &&
-        e.clientY <= rect.bottom
-      );
-      if (!clickedInDialog) dialog.close();
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', () => {
-        if (dialog.open) dialog.close();
-      });
-    });
-  </script>
 </body>
 </html>
