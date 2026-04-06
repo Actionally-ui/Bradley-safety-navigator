@@ -6,21 +6,20 @@
   <title>Bradley's Safety Navigator</title>
   <style>
     :root {
-      --bg: #0f172a;
+      --bg: #0b1222;
       --panel: #111827;
       --panel-2: #1f2937;
       --text: #f8fafc;
       --muted: #cbd5e1;
       --accent: #38bdf8;
-      --accent-2: #22c55e;
-      --warning: #f59e0b;
+      --success: #22c55e;
       --danger: #ef4444;
-      --purple: #a78bfa;
+      --warning: #f59e0b;
       --border: rgba(255,255,255,0.12);
-      --shadow: 0 10px 30px rgba(0,0,0,0.28);
-      --radius: 20px;
-      --maxw: 920px;
-      --top-offset: 90px;
+      --shadow: 0 10px 26px rgba(0,0,0,0.24);
+      --radius: 18px;
+      --maxw: 720px;
+      --top-offset: 82px;
     }
 
     * { box-sizing: border-box; }
@@ -28,26 +27,19 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #0b1222 0%, #111827 100%);
+      background: linear-gradient(180deg, #0b1222 0%, #101826 100%);
       color: var(--text);
       line-height: 1.45;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    .app {
-      width: 100%;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 16px 16px 108px;
-    }
-
     .sticky-top {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(14px);
-      background: rgba(11,18,34,0.88);
+      background: rgba(11,18,34,0.9);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -56,21 +48,21 @@
       margin: 0 auto;
       padding: 12px 16px;
       display: flex;
-      gap: 12px;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 1.02rem;
-      line-height: 1.12;
+      font-size: 1rem;
+      line-height: 1.1;
     }
 
     .brand p {
       margin: 3px 0 0;
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
     .menu-btn {
@@ -78,141 +70,119 @@
       background: rgba(255,255,255,0.04);
       color: var(--text);
       padding: 10px 14px;
-      border-radius: 14px;
+      border-radius: 12px;
       font-weight: 700;
       cursor: pointer;
     }
 
+    .app {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 16px 16px 110px;
+    }
+
     .hero {
-      padding: 18px 0 8px;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(56,189,248,0.14), rgba(255,255,255,0.04));
+      margin-bottom: 14px;
+      padding: 16px;
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(56,189,248,0.14), rgba(255,255,255,0.04));
       box-shadow: var(--shadow);
-      padding: 18px;
     }
 
-    .hero-card h2 {
+    .hero h2 {
       margin: 0 0 8px;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
     }
 
-    .hero-card p {
+    .hero p {
       margin: 0;
       color: var(--muted);
+      font-size: 0.94rem;
     }
 
-    .quick-nav {
+    .home-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin: 16px 0 10px;
+      margin-bottom: 14px;
     }
 
-    .nav-tile {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    .home-tile {
+      min-height: 110px;
       padding: 16px;
-      min-height: 108px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: var(--shadow);
     }
 
-    .nav-tile small {
+    .home-tile small {
       color: var(--muted);
-      font-size: 0.77rem;
+      font-size: 0.76rem;
     }
 
-    .nav-tile strong {
-      font-size: 1rem;
+    .home-tile strong {
       display: block;
+      font-size: 1rem;
     }
 
-    .nav-tile span {
+    .home-tile span {
       color: var(--accent);
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
-
-    .scroll-hint {
-      color: var(--muted);
       font-size: 0.84rem;
-      margin: 2px 2px 18px;
+      font-weight: 700;
     }
 
     .section {
       scroll-margin-top: var(--top-offset);
-      margin: 20px 0;
-      background: rgba(255,255,255,0.04);
+      margin: 16px 0;
+      border-radius: 22px;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
     .section-header {
-      padding: 16px 18px;
+      padding: 15px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
     }
 
     .section-header h3 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1.06rem;
     }
 
     .section-header p {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     .section-body {
-      padding: 18px;
+      padding: 16px;
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
     .card {
       background: rgba(17,24,39,0.92);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 15px;
+      border-radius: 16px;
+      padding: 14px;
     }
 
     .card h4 {
       margin: 0 0 10px;
-      font-size: 0.98rem;
-    }
-
-    .card h5 {
-      margin: 12px 0 8px;
-      font-size: 0.9rem;
+      font-size: 0.97rem;
     }
 
     .card p {
       margin: 0;
-      color: var(--muted);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 0.85rem;
       color: var(--muted);
     }
 
@@ -225,80 +195,117 @@
 
     .script-box {
       border-left: 4px solid var(--accent);
-      padding: 12px 14px;
       background: rgba(56,189,248,0.10);
       border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
+      padding: 12px 13px;
+      font-weight: 700;
       margin-top: 10px;
     }
 
-    .warning { border-left-color: var(--warning); background: rgba(245,158,11,0.12); }
-    .danger { border-left-color: var(--danger); background: rgba(239,68,68,0.12); }
-    .success { border-left-color: var(--accent-2); background: rgba(34,197,94,0.12); }
-    .deep { border-left-color: var(--purple); background: rgba(167,139,250,0.12); }
+    .success-box {
+      border-left-color: var(--success);
+      background: rgba(34,197,94,0.12);
+    }
 
-    .decision-grid,
-    .grid-2,
-    .grid-3 {
+    .danger-box {
+      border-left-color: var(--danger);
+      background: rgba(239,68,68,0.12);
+    }
+
+    .warning-box {
+      border-left-color: var(--warning);
+      background: rgba(245,158,11,0.12);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .btn.primary {
+      background: rgba(56,189,248,0.16);
+      color: var(--text);
+    }
+
+    .decision-grid {
       display: grid;
       gap: 12px;
     }
 
-    .pathway {
+    .decision-card {
+      display: block;
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 14px;
-      background: rgba(255,255,255,0.03);
-      display: block;
+      background: rgba(255,255,255,0.04);
     }
 
-    .pathway h5 {
+    .decision-card h4 {
       margin: 0 0 8px;
-      font-size: 0.96rem;
+      font-size: 0.98rem;
     }
 
-    .pathway small {
-      color: var(--muted);
+    .decision-card small {
       display: block;
+      color: var(--muted);
       margin-top: 8px;
       font-weight: 600;
     }
 
-    .anchor-links {
-      display: flex;
-      flex-wrap: wrap;
+    .mini-steps {
+      display: grid;
       gap: 10px;
-      margin-top: 12px;
     }
 
-    .anchor-btn {
+    .step {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-weight: 700;
-      font-size: 0.88rem;
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
     }
 
-    .back-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .back-top {
-      display: inline-flex;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.88rem;
-    }
-
-    .inline-note {
-      color: var(--muted);
+    .step strong {
+      display: block;
       font-size: 0.86rem;
-      margin-top: 8px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .utility-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
     }
 
     .bottom-nav {
@@ -306,7 +313,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 120;
+      z-index: 110;
       background: rgba(11,18,34,0.93);
       backdrop-filter: blur(12px);
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -339,7 +346,7 @@
     }
 
     dialog {
-      width: min(92vw, 440px);
+      width: min(92vw, 420px);
       border: 1px solid var(--border);
       border-radius: 20px;
       background: #0f172a;
@@ -396,10 +403,31 @@
       margin-top: 4px;
     }
 
+    details.more-info {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+    }
+
+    details.more-info summary {
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    details.more-info summary::-webkit-details-marker { display: none; }
+
+    .more-body {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
     @media (min-width: 720px) {
-      .quick-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-      .decision-grid, .grid-2 { grid-template-columns: 1fr 1fr; }
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .decision-grid { grid-template-columns: 1fr 1fr; }
+      .mini-steps.two-col { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -408,7 +436,7 @@
     <div class="top-inner">
       <div class="brand">
         <h1>Bradley's Safety Navigator</h1>
-        <p>Slide deck front end with deeper plan links</p>
+        <p>Fast mobile guide</p>
       </div>
       <button class="menu-btn" id="openMenu" aria-haspopup="dialog" aria-controls="navMenu">Menu</button>
     </div>
@@ -416,151 +444,92 @@
 
   <main class="app">
     <section class="hero">
-      <div class="hero-card">
-        <h2>Quick guide first, deeper plan second</h2>
-        <p>Tap the main sections for fast access, or scroll the full guide. Where staff need more detail, they can open the deeper plan sections and then come straight back.</p>
-      </div>
+      <h2>Use in the moment</h2>
+      <p>Tap a section to jump straight there, or scroll. This version keeps the main flow simple and hides the extra detail behind one “More info” option.</p>
     </section>
 
-    <section class="quick-nav" aria-label="Quick navigation">
-      <a class="nav-tile" href="#prepare"><div><small>Start here</small><strong>Prepare</strong></div><span>Jump in</span></a>
-      <a class="nav-tile" href="#live-decision"><div><small>In the moment</small><strong>Live Decision</strong></div><span>Choose path</span></a>
-      <a class="nav-tile" href="#safety-pause"><div><small>Manual only</small><strong>Safety Pause</strong></div><span>Go to step 7</span></a>
-      <a class="nav-tile" href="#reporting"><div><small>After event</small><strong>Reporting</strong></div><span>Record it</span></a>
-      <a class="nav-tile" href="#quick-scripts"><div><small>Short phrases</small><strong>Quick Scripts</strong></div><span>Use now</span></a>
+    <section class="home-grid" aria-label="Quick navigation">
+      <a class="home-tile" href="#prepare"><div><small>Start here</small><strong>Prepare</strong></div><span>Open</span></a>
+      <a class="home-tile" href="#decision"><div><small>In the moment</small><strong>Live Decision</strong></div><span>Open</span></a>
+      <a class="home-tile" href="#pause"><div><small>Manual only</small><strong>Safety Pause</strong></div><span>Open</span></a>
+      <a class="home-tile" href="#reporting"><div><small>After event</small><strong>Reporting</strong></div><span>Open</span></a>
+      <a class="home-tile" href="#scripts"><div><small>Quick phrases</small><strong>Scripts</strong></div><span>Open</span></a>
+      <a class="home-tile" href="#more-info"><div><small>Optional</small><strong>More Info</strong></div><span>Open</span></a>
     </section>
-
-    <p class="scroll-hint">This keeps the slide deck as the main interface, but adds deeper sections from the comprehensive plan below so staff do not hit dead ends.</p>
 
     <section class="section" id="prepare">
       <div class="section-header">
         <h3>Prepare</h3>
-        <p>Set up before transport or transfer. Keep waiting to a minimum.</p>
+        <p>Set up first. Reduce waiting.</p>
       </div>
-      <div class="section-body grid-2">
+      <div class="section-body">
         <article class="card">
-          <h4>Identify the transfer type</h4>
-          <div class="chips">
-            <span class="chip">WAV transfer</span>
-            <span class="chip">Manual transfer (non-WAV)</span>
-          </div>
-          <div class="anchor-links">
-            <a class="anchor-btn" href="#deep-about">About Bradley</a>
-            <a class="anchor-btn" href="#deep-proactive">Proactive strategies</a>
+          <h4>Check the transfer type</h4>
+          <div class="utility-row">
+            <span class="tag">WAV transfer</span>
+            <span class="tag">Manual transfer</span>
           </div>
         </article>
 
         <article class="card">
-          <h4>Manual transfer (non-WAV)</h4>
-          <ul>
-            <li>Follow OT plan and manual handling protocol.</li>
-            <li>Complete physical screening before moving.</li>
-            <li>Step 7 safety pause applies if risk escalates.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h4>WAV transfer</h4>
-          <ul>
-            <li>Direct access only.</li>
-            <li>No manual transfer screening required.</li>
-            <li>General monitoring only.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h4>Early signs to watch</h4>
+          <h4>Watch for early signs</h4>
           <ul>
             <li>Mumbling or slurred speech.</li>
             <li>Removing footrests early.</li>
             <li>Repetitive roster questions.</li>
           </ul>
-          <div class="anchor-links">
-            <a class="anchor-btn" href="#deep-escalation-cycle">Deeper escalation cycle</a>
-          </div>
         </article>
 
         <article class="card">
-          <h4>Early response</h4>
+          <h4>Do this</h4>
           <ul>
-            <li>Distract and redirect.</li>
-            <li>Use banter or a preferred topic.</li>
-            <li>Check physical needs.</li>
+            <li>Have the vehicle and equipment ready before he moves.</li>
+            <li>Distract and redirect early.</li>
+            <li>Keep language short and concrete.</li>
           </ul>
-          <div class="back-row">
-            <a class="back-top" href="#top">Back to top ↑</a>
-            <a class="back-top" href="#quick-scripts">Go to scripts ↓</a>
+          <div class="btn-row">
+            <a class="btn primary" href="#decision">Continue to Live Decision</a>
+            <a class="btn" href="#top">Back to top</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" id="live-decision">
+    <section class="section" id="decision">
       <div class="section-header">
         <h3>Live Decision</h3>
-        <p>Use brief language. Keep moving forward. Avoid debates and explanations.</p>
+        <p>Use brief language. Keep moving forward.</p>
       </div>
       <div class="section-body">
         <article class="card">
-          <h4>Agitation / escalation</h4>
+          <h4>Say this</h4>
           <div class="script-box">“Bradley, we’ve got to head off now. Your appointment’s at [time]. Let’s get going.”</div>
           <div class="script-box">“The car’s here to take us. We’ll be quick and then we can [preferred activity].”</div>
-          <div class="script-box">“Let’s head out now, we’re running on time.”</div>
         </article>
 
-        <article class="card warning">
-          <h4>Staff reminders</h4>
+        <article class="card warning-box">
+          <h4>Do this</h4>
           <ul>
             <li>Avoid explaining rules, systems, or insurance.</li>
             <li>Do not argue or justify.</li>
-            <li>Keep language short and concrete.</li>
             <li>Redirect to time, destination, or preferred activity.</li>
-            <li>If helpful, frame transport as courtesy transport or a courtesy bus.</li>
           </ul>
         </article>
 
         <article class="card">
-          <h4>Choose the next path</h4>
-          <p>When there is a safety pause, staff can tap the relevant pathway heading below and continue forward from there.</p>
-          <div class="decision-grid" style="margin-top:12px;">
-            <a class="pathway success" href="#pathway-a">
-              <h5>Pathway A: Skills deficit</h5>
-              <ul>
-                <li>Physical issue such as fatigue, balance, or confusion.</li>
-                <li>Bradley agrees to wait or change plan.</li>
-              </ul>
-              <small>Tap to continue to the Pathway A sequence</small>
-            </a>
-            <a class="pathway danger" href="#pathway-b">
-              <h5>Pathway B: Behaviour</h5>
-              <ul>
-                <li>Refusal, aggression, or unsafe actions.</li>
-                <li>Bradley attempts to proceed anyway.</li>
-              </ul>
-              <small>Tap to continue to the Pathway B sequence</small>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h4>When to move to Safety Pause</h4>
-          <ul>
-            <li>Attempting to stand without support.</li>
-            <li>Pushing wheelchair near roads or traffic.</li>
-            <li>High-volume shouting or cognitive overload.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#safety-pause">Go to Safety Pause ↓</a>
-            <a class="back-top" href="#deep-functional-analysis">Why this happens ↓</a>
+          <h4>Need a safety pause?</h4>
+          <div class="btn-row">
+            <a class="btn primary" href="#pause">Go to Safety Pause</a>
+            <a class="btn" href="#scripts">Open Scripts</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" id="safety-pause">
+    <section class="section" id="pause">
       <div class="section-header">
         <h3>Safety Pause</h3>
-        <p>Manual transfers only. Stop, focus on safety, then choose the pathway.</p>
+        <p>Manual transfers only. Stop, focus on safety, then choose a pathway.</p>
       </div>
       <div class="section-body">
         <article class="card">
@@ -568,41 +537,28 @@
           <ol>
             <li>Stop the transfer.</li>
             <li>Focus on safety.</li>
-            <li>Use the decision tool below.</li>
+            <li>Choose the pathway below.</li>
           </ol>
         </article>
 
         <div class="decision-grid">
-          <a class="pathway success" href="#pathway-a">
-            <h5>Pathway A: Skills deficit</h5>
-            <ul>
-              <li>Physical issue such as fatigue, balance, or confusion.</li>
-              <li>Bradley agrees to wait or change plan.</li>
-              <li>Outcome: duty of care.</li>
-            </ul>
-            <small>Tap to follow the Pathway A sequence</small>
+          <a class="decision-card" href="#pathway-a">
+            <h4>Pathway A: Skills</h4>
+            <p>Use this when the issue is fatigue, balance, confusion, or physical instability.</p>
+            <small>Tap to continue</small>
           </a>
 
-          <a class="pathway danger" href="#pathway-b">
-            <h5>Pathway B: Behaviour</h5>
-            <ul>
-              <li>Refusal, aggression, or unsafe actions.</li>
-              <li>Bradley attempts to proceed anyway.</li>
-              <li>Outcome: restrictive practice and reportable incident.</li>
-            </ul>
-            <small>Tap to follow the Pathway B sequence</small>
+          <a class="decision-card" href="#pathway-b">
+            <h4>Pathway B: Behaviour</h4>
+            <p>Use this when Bradley refuses to wait and attempts to proceed anyway.</p>
+            <small>Tap to continue</small>
           </a>
         </div>
 
-        <article class="card danger">
-          <h4>Important distinction</h4>
-          <ul>
-            <li>Pathway A = person agrees to wait.</li>
-            <li>Pathway B = person refuses and movement is restricted.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#pathway-a">Go to Pathway A ↓</a>
-            <a class="back-top" href="#pathway-b">Go to Pathway B ↓</a>
+        <article class="card">
+          <div class="btn-row">
+            <a class="btn" href="#decision">Back to Live Decision</a>
+            <a class="btn" href="#top">Back to top</a>
           </div>
         </article>
       </div>
@@ -610,45 +566,38 @@
 
     <section class="section" id="pathway-a">
       <div class="section-header">
-        <h3>Pathway A sequence</h3>
-        <p>Use this when the issue is physical instability, fatigue, confusion, or poor balance.</p>
+        <h3>Pathway A</h3>
+        <p>Skills deficit / duty of care.</p>
       </div>
-      <div class="section-body grid-2">
-        <article class="card success">
-          <h4>Trigger</h4>
-          <p>Bradley fails the OT screening due to incapacity such as fatigue, disorientation, or poor balance.</p>
-        </article>
+      <div class="section-body">
+        <div class="mini-steps two-col">
+          <article class="step">
+            <strong>Say this</strong>
+            <p>“Bradley, your legs are too shaky today. It isn’t safe to transfer right now.”</p>
+          </article>
+          <article class="step">
+            <strong>Do this</strong>
+            <p>Pause the outing and move to an in-home or lower-demand option if he agrees.</p>
+          </article>
+          <article class="step">
+            <strong>Record this</strong>
+            <p>Shift notes: “Step 7 – Health/Safety Pause”.</p>
+          </article>
+          <article class="step">
+            <strong>Then</strong>
+            <p>Move to recovery and dignity. Do not debrief the incident.</p>
+          </article>
+        </div>
 
-        <article class="card success">
-          <h4>Interaction</h4>
-          <div class="script-box success">“Bradley, your legs are too shaky today. It isn’t safe to transfer right now.”</div>
-        </article>
-
-        <article class="card success">
-          <h4>Consent</h4>
-          <p>Bradley agrees to wait, postpone, or do an indoor activity.</p>
-        </article>
-
-        <article class="card success">
-          <h4>Staff action</h4>
-          <p>Implement an in-home activity. Door is not blocked. He chooses to stay.</p>
-        </article>
-
-        <article class="card success">
+        <article class="card success-box">
           <h4>Result</h4>
-          <p>Not a restrictive practice. Negotiated duty-of-care decision based on a skills deficit.</p>
+          <p>Not a restrictive practice.</p>
         </article>
 
-        <article class="card success">
-          <h4>Then do this</h4>
-          <ul>
-            <li>Move to the reporting section and record the correct wording.</li>
-            <li>Then move to recovery and dignity.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#reporting">Go to Reporting ↓</a>
-            <a class="back-top" href="#recovery">Go to Recovery ↓</a>
-            <a class="back-top" href="#safety-pause">Back to Safety Pause ↑</a>
+        <article class="card">
+          <div class="btn-row">
+            <a class="btn primary" href="#reporting">Continue to Reporting</a>
+            <a class="btn" href="#pause">Back to Safety Pause</a>
           </div>
         </article>
       </div>
@@ -656,45 +605,38 @@
 
     <section class="section" id="pathway-b">
       <div class="section-header">
-        <h3>Pathway B sequence</h3>
-        <p>Use this when Bradley refuses to wait and attempts to proceed anyway.</p>
+        <h3>Pathway B</h3>
+        <p>Behaviour / restrictive practice.</p>
       </div>
-      <div class="section-body grid-2">
-        <article class="card danger">
-          <h4>Trigger</h4>
-          <p>Bradley fails the screening due to behaviours of concern such as aggression, impulsivity, or refusal to follow safety instructions despite capacity.</p>
-        </article>
+      <div class="section-body">
+        <div class="mini-steps two-col">
+          <article class="step">
+            <strong>Say this</strong>
+            <p>State the risk briefly and do not argue further.</p>
+          </article>
+          <article class="step">
+            <strong>Do this</strong>
+            <p>Prevent exit to maintain safety if he refuses to wait and attempts to proceed anyway.</p>
+          </article>
+          <article class="step">
+            <strong>Report this</strong>
+            <p>Incident report: “Unauthorised Restrictive Practice”.</p>
+          </article>
+          <article class="step">
+            <strong>Then</strong>
+            <p>Move to recovery and dignity when safe.</p>
+          </article>
+        </div>
 
-        <article class="card danger">
-          <h4>Interaction</h4>
-          <p>Staff explain the risk, but Bradley escalates, yells, or attempts to force his way past staff to the vehicle.</p>
-        </article>
-
-        <article class="card danger">
-          <h4>Consent</h4>
-          <p>Bradley refuses to wait and attempts to leave anyway.</p>
-        </article>
-
-        <article class="card danger">
-          <h4>Staff action</h4>
-          <p>Staff prevent exit to maintain safety, for example blocking the door, locking the gate, or refusing to unlock the car.</p>
-        </article>
-
-        <article class="card danger">
+        <article class="card danger-box">
           <h4>Result</h4>
-          <p>Environmental restraint. This is a reportable incident and an unauthorised restrictive practice.</p>
+          <p>Environmental restraint. Reportable incident.</p>
         </article>
 
-        <article class="card danger">
-          <h4>Then do this</h4>
-          <ul>
-            <li>Move to the reporting section and use the restrictive practice wording.</li>
-            <li>Then move to recovery and dignity.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#reporting">Go to Reporting ↓</a>
-            <a class="back-top" href="#recovery">Go to Recovery ↓</a>
-            <a class="back-top" href="#safety-pause">Back to Safety Pause ↑</a>
+        <article class="card">
+          <div class="btn-row">
+            <a class="btn primary" href="#reporting">Continue to Reporting</a>
+            <a class="btn" href="#pause">Back to Safety Pause</a>
           </div>
         </article>
       </div>
@@ -703,302 +645,109 @@
     <section class="section" id="reporting">
       <div class="section-header">
         <h3>Reporting</h3>
-        <p>Record the pathway clearly and use the matching wording.</p>
+        <p>Record the pathway clearly, then move on.</p>
       </div>
-      <div class="section-body grid-2">
-        <article class="card success">
+      <div class="section-body">
+        <article class="card">
           <h4>Pathway A</h4>
-          <ul>
-            <li>Record in shift notes.</li>
-            <li>Use wording: “Step 7 – Health/Safety Pause”.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#pathway-a">Back to Pathway A ↑</a>
-          </div>
-        </article>
-
-        <article class="card danger">
-          <h4>Pathway B</h4>
-          <ul>
-            <li>Complete incident report.</li>
-            <li>Use wording: “Unauthorised Restrictive Practice”.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#pathway-b">Back to Pathway B ↑</a>
-          </div>
+          <p>Shift notes: “Step 7 – Health/Safety Pause”.</p>
         </article>
 
         <article class="card">
-          <h4>Duty of care vs restrictive practice</h4>
-          <ul>
-            <li>Duty of care: physical inability, person agrees, plan adjusts.</li>
-            <li>Restrictive practice: behaviour refusal, person does not agree, movement is blocked or restricted.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#recovery">Go to Recovery ↓</a>
-            <a class="back-top" href="#top">Back to top ↑</a>
+          <h4>Pathway B</h4>
+          <p>Incident report: “Unauthorised Restrictive Practice”.</p>
+        </article>
+
+        <article class="card">
+          <div class="btn-row">
+            <a class="btn primary" href="#recovery">Continue to Recovery</a>
+            <a class="btn" href="#top">Back to top</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" id="quick-scripts">
+    <section class="section" id="scripts">
       <div class="section-header">
-        <h3>Quick Scripts</h3>
-        <p>Short, repeatable phrases for staff use in real time.</p>
+        <h3>Scripts</h3>
+        <p>Short phrases for real-time use.</p>
       </div>
-      <div class="section-body grid-2">
+      <div class="section-body">
         <article class="card">
           <h4>Escalation / refusal</h4>
           <div class="script-box">“Bradley, we’ve got to head off now. Your appointment’s at [time]. Let’s get going.”</div>
         </article>
 
         <article class="card">
-          <h4>Vehicle transition (WAV)</h4>
+          <h4>Vehicle transition</h4>
           <div class="script-box">“The courtesy bus is here to take us to the cafe. Let’s head out.”</div>
         </article>
 
         <article class="card">
-          <h4>Mobility check (manual)</h4>
+          <h4>Mobility check</h4>
           <div class="script-box">“Let’s just test the legs on the machine first.”</div>
         </article>
 
         <article class="card">
-          <h4>Distraction / rumbling</h4>
-          <div class="script-box">“How about those property prices in Currumbin? Did you see that boat on the news?”</div>
-        </article>
-
-        <article class="card deep">
-          <h4>Deeper script rationale</h4>
-          <p>The comprehensive plan emphasises respect, humour, honesty, action, reduced waiting, visual cues over verbal argument, and not correcting confabulation in the moment.</p>
-          <div class="anchor-links">
-            <a class="anchor-btn" href="#deep-proactive">Open proactive strategies</a>
-            <a class="anchor-btn" href="#deep-skill-building">Open skill building</a>
-          </div>
+          <h4>Distraction</h4>
+          <div class="script-box">“Did you see that boat on the news?”</div>
         </article>
       </div>
     </section>
 
     <section class="section" id="recovery">
       <div class="section-header">
-        <h3>Recovery & dignity</h3>
-        <p>Preserve respect after the event.</p>
+        <h3>Recovery</h3>
+        <p>Preserve dignity after the event.</p>
       </div>
       <div class="section-body">
         <article class="card">
           <ul>
             <li>Do not debrief the incident with Bradley.</li>
             <li>Move straight to a preferred, low-demand activity.</li>
-            <li>Act as if everything is normal to preserve dignity.</li>
+            <li>Act as if everything is normal.</li>
           </ul>
-          <div class="script-box success">Core principle: Bradley values being the boss of his own life. Respect his identity, even in recovery.</div>
-          <div class="back-row">
-            <a class="back-top" href="#reporting">Back to Reporting ↑</a>
-            <a class="back-top" href="#top">Back to top ↑</a>
+          <div class="script-box success-box">Bradley values being the boss of his own life. Respect his identity, even in recovery.</div>
+          <div class="btn-row">
+            <a class="btn" href="#top">Back to top</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" id="deep-about">
+    <section class="section" id="more-info">
       <div class="section-header">
-        <h3>Deeper plan: About Bradley</h3>
-        <p>More in-depth context from the comprehensive plan.</p>
+        <h3>More Info</h3>
+        <p>Optional extra detail only.</p>
       </div>
-      <div class="section-body grid-2">
-        <article class="card deep">
-          <h4>Identity and strengths</h4>
-          <ul>
-            <li>Values dignity, respect, and being the boss of his own life.</li>
-            <li>Takes pride in his history as a business owner, chippy, surfer, and abalone diver.</li>
-            <li>Strong upper body, talented storyteller, enjoys banter and nature.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>Support needs</h4>
-          <ul>
-            <li>Brain injury affects memory and information processing.</li>
-            <li>May believe he can walk or transfer safely when his legs are not steady.</li>
-            <li>Too much noise, instruction, or waiting can overwhelm him.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>What works</h4>
-          <ul>
-            <li>Treat him like an equal.</li>
-            <li>Use humour.</li>
-            <li>Be direct but kind.</li>
-            <li>Have everything ready before mentioning the outing.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#prepare">Back to Prepare ↑</a>
-            <a class="back-top" href="#top">Back to top ↑</a>
+      <div class="section-body">
+        <details class="more-info">
+          <summary>About Bradley</summary>
+          <div class="more-body">
+            Bradley values dignity, respect, humour, directness, and being treated like an equal. Waiting, overload, and loss of control can increase frustration.
           </div>
-        </article>
-      </div>
-    </section>
+        </details>
 
-    <section class="section" id="deep-functional-analysis">
-      <div class="section-header">
-        <h3>Deeper plan: Why this happens</h3>
-        <p>Functional analysis summary for staff who need more context.</p>
-      </div>
-      <div class="section-body grid-2">
-        <article class="card deep">
-          <h4>Predisposing factors</h4>
-          <ul>
-            <li>Grief and loss between pre-injury identity and post-injury reality.</li>
-            <li>Need for control and autonomy.</li>
-            <li>Lack of insight into physical deficits in the moment.</li>
-            <li>May confuse new memories with older memories and believe they are true.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>Triggers</h4>
-          <ul>
-            <li>The walking belt, which he calls the strap.</li>
-            <li>Waiting and delays.</li>
-            <li>Cognitive fatigue, especially later in the day.</li>
-            <li>Unfamiliar staff.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>What keeps it going</h4>
-          <ul>
-            <li>Inconsistent feedback after unsafe transfers.</li>
-            <li>Staff preventing falls can reduce his awareness of instability.</li>
-            <li>Blaming staff keeps frustration directed at people rather than the situation.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>Protective factors</h4>
-          <ul>
-            <li>Relational connection, warmth, humour.</li>
-            <li>Trust in family members more than staff for some transport decisions.</li>
-            <li>Storytelling about past competence can regulate mood.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#live-decision">Back to Live Decision ↑</a>
-            <a class="back-top" href="#top">Back to top ↑</a>
+        <details class="more-info">
+          <summary>Why behaviour may escalate</summary>
+          <div class="more-body">
+            Triggers can include the walking belt, delays, fatigue, unfamiliar staff, and challenges to his beliefs in the moment.
           </div>
-        </article>
-      </div>
-    </section>
+        </details>
 
-    <section class="section" id="deep-proactive">
-      <div class="section-header">
-        <h3>Deeper plan: Proactive strategies</h3>
-        <p>These are the preventative strategies under the comprehensive plan.</p>
-      </div>
-      <div class="section-body grid-2">
-        <article class="card deep">
-          <h4>1. Framing</h4>
-          <ul>
-            <li>He rejects personal authority but responds better to service-based framing.</li>
-            <li>Courtesy transport wording may help for WAV use.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>2. Zero wait rule</h4>
-          <ul>
-            <li>Have the vehicle arrived and open before he moves.</li>
-            <li>Have equipment positioned before he stands.</li>
-            <li>Have shoes and wallet ready before mentioning the outing.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>3. Visual cues over argument</h4>
-          <ul>
-            <li>Do not argue when he insists he is steady.</li>
-            <li>Use equipment to show instability safely.</li>
-            <li>Keep language short and concrete.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>4. Relational scaffolding</h4>
-          <ul>
-            <li>Use humour and banter.</li>
-            <li>Do not correct confabulation in the moment.</li>
-            <li>Validate the feeling and redirect to a preferred topic.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#prepare">Back to Prepare ↑</a>
-            <a class="back-top" href="#quick-scripts">Back to Quick Scripts ↑</a>
+        <details class="more-info">
+          <summary>Proactive strategies</summary>
+          <div class="more-body">
+            Keep a zero-wait approach, use visual cues over argument, and use humour, banter, and relational scaffolding.
           </div>
-        </article>
-      </div>
-    </section>
+        </details>
 
-    <section class="section" id="deep-skill-building">
-      <div class="section-header">
-        <h3>Deeper plan: Skill building</h3>
-        <p>These can sit underneath the script section as optional extra detail.</p>
-      </div>
-      <div class="section-body grid-3">
-        <article class="card deep">
-          <h4>Real-time safety insight</h4>
-          <p>Use experiential feedback rather than argument. Let him feel the balance limit safely, then name the wobble.</p>
-        </article>
-        <article class="card deep">
-          <h4>Vehicle transfer tolerance</h4>
-          <p>Reframe transport as service or courtesy. Reduce disability-coded language and use visual anchors where appropriate.</p>
-        </article>
-        <article class="card deep">
-          <h4>Waiting tolerance</h4>
-          <p>Set up fully before inviting movement. Where waiting is unavoidable for WAV, use video distraction.</p>
-          <div class="back-row">
-            <a class="back-top" href="#quick-scripts">Back to Quick Scripts ↑</a>
-            <a class="back-top" href="#top">Back to top ↑</a>
+        <details class="more-info">
+          <summary>Skill building</summary>
+          <div class="more-body">
+            Use in-the-moment experiential feedback rather than debate. Reframe transport respectfully and reduce waiting wherever possible.
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="deep-escalation-cycle">
-      <div class="section-header">
-        <h3>Deeper plan: Escalation cycle</h3>
-        <p>Expanded stage-by-stage reference from the comprehensive plan.</p>
-      </div>
-      <div class="section-body grid-2">
-        <article class="card deep">
-          <h4>1. Baseline / calm</h4>
-          <ul>
-            <li>Storytelling, joking, banter, tabletop games, nature or yachting content.</li>
-            <li>Values being treated as an equal and making choices.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>2. Early warning signs</h4>
-          <ul>
-            <li>Mumbling, slurred speech, unease at shift start.</li>
-            <li>Removing footrests, repetitive questioning, fixation on staff or roster.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>3. Escalation</h4>
-          <ul>
-            <li>Swearing, accusing staff, refusing belt or vehicle, asserting boss role.</li>
-            <li>Staff response: reduce verbal clutter, do not argue, redirect forward.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>4. Crisis / peak</h4>
-          <ul>
-            <li>Impulsive standing, pushing wheelchair near hazards, incoherent shouting, threats.</li>
-            <li>Staff response: immediate safety and Step 7 decision.</li>
-          </ul>
-        </article>
-        <article class="card deep">
-          <h4>5. Recovery</h4>
-          <ul>
-            <li>Fatigue, confusion, apology, withdrawal, or no recollection.</li>
-            <li>Do not debrief. Return to a low-demand preferred activity.</li>
-          </ul>
-          <div class="back-row">
-            <a class="back-top" href="#prepare">Back to Prepare ↑</a>
-            <a class="back-top" href="#live-decision">Back to Live Decision ↑</a>
-          </div>
-        </article>
+        </details>
       </div>
     </section>
   </main>
@@ -1006,10 +755,10 @@
   <nav class="bottom-nav" aria-label="Bottom navigation">
     <div class="bottom-nav-inner">
       <a class="bottom-link" href="#prepare">Prepare</a>
-      <a class="bottom-link" href="#live-decision">Decision</a>
-      <a class="bottom-link" href="#safety-pause">Pause</a>
+      <a class="bottom-link" href="#decision">Decision</a>
+      <a class="bottom-link" href="#pause">Pause</a>
       <a class="bottom-link" href="#reporting">Report</a>
-      <a class="bottom-link" href="#quick-scripts">Scripts</a>
+      <a class="bottom-link" href="#scripts">Scripts</a>
     </div>
   </nav>
 
@@ -1020,15 +769,15 @@
     </div>
     <div class="dialog-body">
       <div class="menu-list">
-        <a class="menu-link" href="#prepare">Prepare<small>Transfer type, early signs, early response.</small></a>
-        <a class="menu-link" href="#live-decision">Live Decision<small>Agitation script and pathway choice.</small></a>
-        <a class="menu-link" href="#safety-pause">Safety Pause<small>Manual only. Step 7 and pathway selection.</small></a>
-        <a class="menu-link" href="#pathway-a">Pathway A<small>Sequential duty-of-care flow.</small></a>
-        <a class="menu-link" href="#pathway-b">Pathway B<small>Sequential restrictive-practice flow.</small></a>
-        <a class="menu-link" href="#reporting">Reporting<small>Shift note vs incident report wording.</small></a>
-        <a class="menu-link" href="#quick-scripts">Quick Scripts<small>Short phrases staff can reuse.</small></a>
-        <a class="menu-link" href="#recovery">Recovery & dignity<small>Preferred activity and preserve dignity.</small></a>
-        <a class="menu-link" href="#deep-about">Deeper plan sections<small>Open the more in-depth plan content.</small></a>
+        <a class="menu-link" href="#prepare">Prepare<small>Set up and reduce waiting.</small></a>
+        <a class="menu-link" href="#decision">Live Decision<small>Brief language and next action.</small></a>
+        <a class="menu-link" href="#pause">Safety Pause<small>Choose Pathway A or B.</small></a>
+        <a class="menu-link" href="#pathway-a">Pathway A<small>Say this, do this, record this.</small></a>
+        <a class="menu-link" href="#pathway-b">Pathway B<small>Say this, do this, report this.</small></a>
+        <a class="menu-link" href="#reporting">Reporting<small>Record and move on.</small></a>
+        <a class="menu-link" href="#scripts">Scripts<small>Short phrases for real-time use.</small></a>
+        <a class="menu-link" href="#recovery">Recovery<small>Preserve dignity.</small></a>
+        <a class="menu-link" href="#more-info">More Info<small>Optional extra detail.</small></a>
       </div>
     </div>
   </dialog>
